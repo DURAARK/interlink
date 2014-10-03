@@ -1,0 +1,259 @@
+svg {
+    overflow: hidden;
+    display: block;
+    cursor: move;
+}
+
+svg:hover {
+    background: url(../img/grid.png);
+}
+
+.node rect {
+    stroke: #333;
+    stroke-width: 1px;
+    fill: #fff;
+    cursor: pointer;
+}
+
+.node.active rect {
+    stroke: #6495ED;
+    stroke-width: 3px;
+    fill: #DCE4F2;
+    cursor: pointer;
+}
+
+.edgeLabel rect {
+    fill: transparent;
+}
+
+.edgePath {
+    stroke: #333;
+    stroke-width: 1px;
+    fill: none;
+}
+
+.lang {
+    font-family: "courier new";
+    padding-right: 0px;
+}
+
+.uri {
+    font-size: 120%;
+    font-weight: bold;
+}
+
+.pred {
+    font-style: italic;
+}
+
+svg span, svg a {
+    display: inline-block;
+    padding: 1px 10px;
+    color: black;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+.overflow {
+    max-height: 100px;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+svg div, svg div * {
+    cursor: pointer;
+}
+
+body, html {
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+
+body {
+    background: url(../img/stroke.gif) repeat-y center center;
+}
+
+#svg1 {
+    border-bottom: solid 2px #eee;
+}
+
+#linkType {
+    position: absolute;
+    padding: 5px;
+    border-radius: 10px;   
+    background: #6495ED;
+}
+
+#linkType select {
+    color: white;
+    border: none;
+    background: #6495ED;
+    font-size: 150%;
+}
+
+#settings,
+#user {
+    display: block;
+    position: absolute;
+    top: 10px;
+    height: 32px;
+    width: 32px;   
+}
+
+#settings {
+    right: 10px;
+    background: url(../img/settings.png);
+}
+
+#user {
+    left: 10px;
+    background: url(../img/user.png);
+}
+
+#settingsPanel,
+#userPanel {
+    display: block;
+    position: absolute;
+    top: 10px;
+    height: 220px;
+    width: 500px;
+    background: #f0f0f0;
+    border: solid 2px #ddd;
+    display: none;
+    padding: 20px;
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
+#settingsPanel {
+    right: 10px;
+}
+
+#userPanel {
+    left: 10px;
+}
+    
+
+input[type=text],
+input[type=password],
+input[type=submit],
+input[type=reset],
+textarea {
+    display: block;
+    width: 500px;
+    margin-bottom: 12px;
+    border: solid 1px #aaa;
+    padding: 5px 10px;
+    border-radius: 3px;
+}
+
+input[type=text].with_checkbox {
+    width: 473px;
+}
+
+input[type=checkbox] {
+    display: block;
+    float: left;
+    padding: 5px 0;
+    margin-top: 8px;
+    width: 20px;
+}
+
+textarea {
+    height: 180px;
+}
+
+label {
+    display: block;
+}
+
+h2 {
+    margin-top: 0;
+    margin-bottom: 12px;
+}
+
+input[type=reset] {
+    background: #ddd;
+}
+
+input[type=submit] {
+    background: #6495ED;
+    border-color: #58C;
+    color: white;
+    margin-left: 20px;
+}
+
+input[type=submit],
+input[type=reset] {
+    width: 120px;
+    float: right;
+    padding: 10px;
+    font-weight: bold;
+    margin-top: 12px;
+}
+
+img#submitLink,
+img#refreshView {
+    vertical-align: -6px;
+    padding: 0 7px 0 3px;
+    opacity: 0.5;
+}
+
+img#submitLink:hover,
+img#refreshView:hover {
+    opacity: 1.0;
+    cursor: hand;
+}
+
+a.vocabSetting {
+    display: inline-block;
+    color: black;
+    text-decoration: none;
+    padding: 4px 10px;
+    border: solid 1px #aaa;
+    background: #ddd;
+    margin: 0 12px 12px 0;
+}
+
+a.vocabSetting.active {
+    background: linear-gradient(to bottom, #bbb 0%,#eee 100%);
+}
+
+div#vocabSettingsMask {
+    width: 500px;
+    overflow: hidden;
+}
+
+div#vocabSettingsContainer {
+    width: 10000px;
+}
+
+div.vocabSettingPanel {
+    display: block;
+    float: left;
+    width: 500px;
+}
+
+#error {
+    position: absolute;
+    width: 500px;
+    border: solid 1px red;
+    padding: 20px;
+    text-align: center;
+    cursor: pointer;
+    background: white;
+    display: none;
+}
+
+#error.message {
+    font-weight: bold;
+    font-size: 120%;
+}
+
+#logoutForm {
+    display: none;
+}

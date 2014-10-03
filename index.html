@@ -1,0 +1,74 @@
+<html>
+<head>
+<link rel="stylesheet" type="text/css" href="css/main.css" />
+<script type='text/javascript' src="lib/jquery.js"></script>
+<script type='text/javascript' src="lib/d3.v3.js"></script>
+<script type='text/javascript' src='lib/require.js' data-main='js/main'></script>
+<script type='text/javascript' src='lib/dagre.js'></script>
+<script type='text/javascript' src='lib/dagre-d3.js'></script>
+</head>
+<body>
+<svg id='svg1'>
+    <g class='outerTransform' transform="translate(0,0)"/>
+</svg>
+<svg id='svg2'>
+    <g class='outerTransform' transform="translate(0,0)"/>
+</svg>
+<div id="linkType">
+    <img id='refreshView' src='img/refresh.png'></img>
+    <select id="linkTypeSelect">
+        <option>owl:sameAs</option>
+        <option>skos:closeMatch</option>
+        <option>skos:exactMatch</option>
+        <option>skos:narrowMatch</option>
+        <option>skos:relatedMatch</option>
+        <option>skos:broadMatch</option>
+        <option>rdfs:seeAlso</option>
+    </select>
+    <img id='submitLink' src='img/check.png'></img>
+</div>
+<a href='#' id='settings'></a>
+<a href='#' id='user'></a>
+<div id='settingsPanel'>
+    <h2>Settings</h2>
+    <form id='settingsForm'>
+        <label>Languages</label>
+        <input name='languages' type='text' value=''></input>
+        <label>Predicates</label>
+        <input name='predicates' type='text' value=''></input>
+        <label>Prefixes</label>
+        <textarea name='prefixes'></textarea>
+        <div id='vocabSettingsLinks'></div>
+        <div id='vocabSettingsMask'>
+            <div id='vocabSettingsContainer'></div>
+        </div>
+        <input type='submit' value='Update'></input>
+        <input type='reset' value='Close'></input>
+    </form>
+</div>
+<div id='userPanel'>
+    <h2>User</h2>
+    <form id='userForm'>
+        <label>Username</label>
+        <input name='username' type='text' value=''></input>
+        <label>Password</label>
+        <input name='password' type='password' value=''></input>
+        <input onclick='window.userAction="login"' type='submit' value='Login'></input>
+        <input onclick='window.userAction="register"' type='submit' value='Register'></input>
+        <input type='reset' value='Close'></input>
+    </form>
+    <form id='logoutForm'>
+        <div id='loggedInAs'>Logged in as <span id='username'></span></div>
+        <input type='submit' value='Logout'></input>
+    </form>
+</div>
+</div>
+<div id="error">
+<div class="message">
+</div>
+<div class="smaller">
+(click to close)
+</div>
+</div>
+</body>
+</html>
