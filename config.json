@@ -1,5 +1,9 @@
 {
-    "languages": ["en"],
+    "app": {
+        "disallow_focus_shift": true,
+        "disallow_anonymous": true        
+    },
+    "languages": ["en", "eng"],
     "predicates": [
         "rdfs:label",
         "rdfs:subClassOf",
@@ -40,6 +44,7 @@
         "@prefix gvp: <http://vocab.getty.edu/ontology#>",
         "@prefix gvp_lang: <http://vocab.getty.edu/language/>",
         "@prefix iso: <http://purl.org/iso25964/skos-thes#>",
+        "@prefix lemon: <http://lemon-model.net/lemon#>",
         "@prefix lingvoj: <http://www.lingvoj.org/ontology#>",
         "@prefix luc: <http://www.ontotext.com/owlim/lucene#>",
         "@prefix music-ont: <http://purl.org/ontology/mo/>",
@@ -87,6 +92,7 @@
         "@prefix wordn-sc: <http://www.w3.org/2006/03/wn/wn20/schema/>",
         "@prefix wordnet: <http://www.w3.org/2006/03/wn/wn20/instances/>",
         "@prefix wordnet16: <http://xmlns.com/wordnet/1.6/>",
+        "@prefix wn: <http://wordnet-rdf.princeton.edu/ontology#>",
         "@prefix wv: <http://vocab.org/waiver/terms/>",
         "@prefix xsd: <http://www.w3.org/2001/XMLSchema#>",
         "@prefix yago: <http://mpii.de/yago/resource/>"
@@ -105,11 +111,16 @@
             ]
         },
         "wordnet": {
-            "prefix": "http://www.w3.org/2006/03/wn/wn20/instances/",
+            "prefix": "http://wordnet-rdf.princeton.edu/wn31/",
             "endpoint": "http://bw-dssv19.bwk.tue.nl:8890/sparql?default-graph-uri=&query={query}&format={fmt}",
             "predicates": [
                 "wordn-sc:hyponymOf",
-                "wordn-sc:gloss"       
+                "wordn-sc:gloss",
+                "wn:gloss",
+                "wn:hyponym",
+                "wn:hypernym",
+                "rdfs:label",
+                "lemon:reference"
             ]
         },
         "bsdd": {
@@ -123,7 +134,13 @@
         },
         "dbpedia": {
             "prefix": "http://dbpedia.org/resource/",
-            "endpoint": "http://dbpedia.org/sparql?default-graph-uri=http://dbpedia.org&query={query}&format=application/json"
+            "endpoint": "http://dbpedia.org/sparql?default-graph-uri=http://dbpedia.org&query={query}&format=application/json",
+            "predicates": [
+                "rdfs:label",
+                "dc-term:subject",
+                "skos:broader",
+                "dbp-ont:wikiPageDisambiguates"
+            ]
         }
     }
 }

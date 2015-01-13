@@ -4,6 +4,9 @@ require(['graph', 'Settings', 'prefixes', 'api', '../lib/text!../config.json'], 
     var layout;
     var centerX;
     
+    var disallow_focus_shift = false;
+    var disallow_anonymous = false;
+    
     (function(cfg) {
         // Build the DOM elements based on the configuration
         // and populate the inputs with the provided values
@@ -44,6 +47,11 @@ require(['graph', 'Settings', 'prefixes', 'api', '../lib/text!../config.json'], 
             });
             $("#vocabSettingsContainer").append(panel);
         });
+        
+        if (cfg.app) {
+            disallow_focus_shift = !!cfg.app.disallow_focus_shift;
+            disallow_anonymous = !!cfg.app.disallow_anonymous;
+        }
     })(JSON.parse(configText));
     
     Settings.build();    
@@ -73,7 +81,8 @@ require(['graph', 'Settings', 'prefixes', 'api', '../lib/text!../config.json'], 
             endpoint: upperSettings.endpoint(),
             languages: upperSettings.languages(),
             predicates: upperSettings.predicates(),
-            accept: upperSettings.accept()
+            accept: upperSettings.accept(),
+            disallow_focus_shift: disallow_focus_shift
         });
         
         lowerGraph = new Graph({
@@ -82,7 +91,8 @@ require(['graph', 'Settings', 'prefixes', 'api', '../lib/text!../config.json'], 
             endpoint: lowerSettings.endpoint(),
             languages: lowerSettings.languages(),
             predicates: lowerSettings.predicates(),
-            accept: lowerSettings.accept()
+            accept: lowerSettings.accept(),
+            disallow_focus_shift: disallow_focus_shift
         });
         
         var wrapPositioning = function(fn) {
@@ -151,6 +161,7 @@ require(['graph', 'Settings', 'prefixes', 'api', '../lib/text!../config.json'], 
             return function(e) {
                 e.preventDefault();
                 $("#userPanel").fadeOut();
+                $("#overlay").fadeOut();
                 $("#user").show();
                 if (action === 'login') {
                     var button = window.userAction;
@@ -167,6 +178,10 @@ require(['graph', 'Settings', 'prefixes', 'api', '../lib/text!../config.json'], 
                         if (ret.status === 409) {
                             throw new Error("A user with that name already exists");
                         } else {
+                            if (disallow_anonymous) {
+                                $("#userPanel").fadeIn();
+                                $("#overlay").fadeIn();
+                            }
                             throw new Error("Invalid credentials");
                         }
                     });
@@ -181,7 +196,18 @@ require(['graph', 'Settings', 'prefixes', 'api', '../lib/text!../config.json'], 
         api.user.read().then(function(ret) {
             loggedIn(ret.username);
         }, function() {
-            // not logged in, do nothing.
+            if (disallow_anonymous) {
+                var center = function(el) {
+                    el.css("position","absolute");
+                    el.css("top", Math.max(0, (($(window).height() - el.outerHeight()) / 2) + $(window).scrollTop()) + "px");
+                    el.css("left", Math.max(0, (($(window).width() - el.outerWidth()) / 2) + $(window).scrollLeft()) + "px");
+                }
+                $("#userPanelCloseButton").css("display", "none");
+                $("#userRegisterButton").css("display", "none");
+                center($("#userPanel"));
+                $("#userPanel").fadeIn();
+                $("#overlay").fadeIn();
+            }
         });
         
         $("#userForm").bind('submit', userEvent('login'));

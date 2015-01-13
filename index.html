@@ -54,8 +54,8 @@
         <label>Password</label>
         <input name='password' type='password' value=''></input>
         <input onclick='window.userAction="login"' type='submit' value='Login'></input>
-        <input onclick='window.userAction="register"' type='submit' value='Register'></input>
-        <input type='reset' value='Close'></input>
+        <input onclick='window.userAction="register"' type='submit' value='Register' id='userRegisterButton'></input>
+        <input type='reset' value='Close' id='userPanelCloseButton'></input>
     </form>
     <form id='logoutForm'>
         <div id='loggedInAs'>Logged in as <span id='username'></span></div>
@@ -70,5 +70,6 @@
 (click to close)
 </div>
 </div>
+<div id="overlay"></div>
 </body>
 </html>

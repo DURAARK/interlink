@@ -1,10 +1,6 @@
 <?php
 
 function read($mysqli, $body) {
-  $types = "s";
-  $username = $body->username;
-  $password = $body->password;
-  
   $res = query("SELECT id, uri1, uri2 FROM potential_matches ORDER BY num_results ASC, RAND() LIMIT 1");
   
   if (!$res["id"]) {
@@ -44,7 +40,8 @@ function write_record($uri1, $uri2, $types, $users) {
 
   $type_count = array();
   foreach($types as $t) { $type_count[$t] ++; }
-  $most_used_type = array_keys($type_count, max($type_count))[0];
+  $most_used_type = array_keys($type_count, max($type_count));
+  $most_used_type = $most_used_type[0];
   
   $stmts = array("<link_$id> a vol:Link ",
                  "  vol:linksResource <$uri1> ",

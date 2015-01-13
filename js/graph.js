@@ -293,13 +293,15 @@ define('graph', ['Textifier', 'util', 'prefixes', 'queryBuilder'], function(Text
                     // Merge nodes are not queried.. but what to do with them?
                 } else {
                     if (data in gathered_uris) {
-                        // This node has already been expanded, make it the
-                        // new center node.
-                        centerUri = settings.centerUri = data;
-                        d3.selectAll('#'+ settings.domNode + ' g.node').classed("active", function(id) {
-                            return data === id;
-                        });
-                        reposition({anim: true});
+                        if (!settings.disallow_focus_shift) {
+                            // This node has already been expanded, make it the
+                            // new center node.
+                            centerUri = settings.centerUri = data;
+                            d3.selectAll('#'+ settings.domNode + ' g.node').classed("active", function(id) {
+                                return data === id;
+                            });
+                            reposition({anim: true});
+                        }
                     } else {
                         nodes = {};
                         edges = [];
