@@ -2,8 +2,13 @@ import sys
 import glob
 import itertools
 
-from rdflib.graph import Graph
-from rdflib.term import URIRef
+try:
+    from rdflib.graph import Graph
+    from rdflib.term import URIRef
+except:
+    from rdflib import Graph
+    from rdflib import URIRef
+
 
 ROWS_PER_INSERT = 1000
 
