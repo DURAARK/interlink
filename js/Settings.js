@@ -1,4 +1,4 @@
-define('Settings', ['util'], function(util) {
+define('Settings', ['util', '../lib/domReady!'], function(util) {
 
     var localStorageKey = "interlink.SETTINGS";
 
